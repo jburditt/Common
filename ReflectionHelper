@@ -1,0 +1,27 @@
+namespace Common {
+  public class ReflectionHelper {
+  
+  	public static string[] reservedWords = {
+  		"abstract", "as", "base", "bool", "break", "byte", "case", "catch", "char", "checked", "class", "const", "continue", "decimal", "default", "delegate", "do", "double",
+  		"else", "enum", "event", "explicit", "extern", "false", "finally", "fixed", "float", "for", "foreach", "goto", "if", "implicit", "in", "int", "interface", "internal",
+  		"is", "lock", "long", "namespace", "new", "null", "object", "operator", "out", "override", "params", "private", "protected", "public", "readonly", "ref", "return",
+  		"sbyte", "sealed", "short", "sizeof", "stackalloc", "static", "string", "struct", "switch", "this", "throw", "true", "try", "typeof", "uint", "ulong", "unchecked",
+  		"unsafe", "ushort", "using", "virtual", "void", "volatile", "while"
+  	};
+
+    public static string GetPropertyDisplayName(Type t)
+    {
+      if(t.IsGenericType && t.GetGenericTypeDefinition() == typeof(Nullable))
+          return string.Format("{0}?", GetDisplayName(t.GetGenericArguments()[0]));
+      if(t.IsGenericType)
+          return string.Format("{0}<{1}>",
+              t.Name.Remove(t.Name.IndexOf('`')), 
+              string.Join(",",t.GetGenericArguments().Select(at => GetDisplayName(at))));
+      if(t.IsArray)
+          return string.Format("{0}[{1}]", 
+              GetDisplayName(t.GetElementType()),
+              new string(',', t.GetArrayRank()-1));
+      return SafeName(t.Name);
+    }
+  }
+}
