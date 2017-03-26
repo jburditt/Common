@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Arcteryx.Utilities
+namespace Utilities
 {
     public static class StringExtensions
     {
