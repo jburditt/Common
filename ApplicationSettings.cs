@@ -49,7 +49,6 @@ namespace Common
 
         static Stream GetEmbeddedResource(string resourceName)
         {
-            // This line works on iOS and Android but NOT WPF
             var assembly = assembly.GetCallingAssembly();
 
             var resourcePath = assembly.GetManifestResourceNames()
