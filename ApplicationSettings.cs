@@ -25,6 +25,7 @@ namespace Common
         }
     }
     
+    // Make sure appSettings files are set to "Embedded Resource"
     public class XamarinAppSettings
     {
         using System.Linq
