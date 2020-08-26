@@ -1,3 +1,5 @@
+using System.Text.Json;
+
 namespace common 
 {
   public class ObjectExtensions 
@@ -16,6 +18,11 @@ namespace common
             return n;
         }
 
+          public static string ToJson(this object obj)
+        {
+            return JsonSerializer.Serialize(obj);
+        }
+    
         /// <summary>
         /// Perform a deep Copy of the object, using Json as a serialisation method. NOTE: Private members are not cloned using this method.
         /// </summary>
