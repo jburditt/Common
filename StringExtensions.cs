@@ -7,6 +7,12 @@ namespace Common
 {
     public static class StringExtensions
     {
+        public static Stream ToStream(this string str)
+        {
+            var bytes = Encoding.ASCII.GetBytes(str);
+            return new MemoryStream(bytes);
+        }
+        
         public static string ToAscii(this string source, char nil = ' ')
         {
             const char max = '\u007F';
